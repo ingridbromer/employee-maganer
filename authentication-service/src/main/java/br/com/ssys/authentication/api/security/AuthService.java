@@ -7,28 +7,28 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import br.com.ssys.authentication.api.model.dto.EmployeeDTO;
-import br.com.ssys.authentication.api.restEmployee.RestEmployee;
+import br.com.ssys.authentication.api.model.dto.UserDTO;
+import br.com.ssys.authentication.api.restUser.RestUser;
 
 @Service
 public class AuthService implements UserDetailsService {
 
 	@Autowired
-	RestEmployee restEmployee;
+	RestUser restClient;
 	
 	@Autowired
 	JWTUtil jwtUtil;
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		EmployeeDTO employee = restEmployee.verifyEmployee(email);
-		if (employee.getEmail() == null) {
-			System.out.println("Funcionário não encontrado");
+		UserDTO user = restClient.verifyClient(email);
+		if(user.getEmail() == null) {
+			System.out.println("Usuário não encontrado");
 		}
-		return new UserSS(employee.getId(), employee.getEmail(), employee.getName(), employee.getPassword(),
-				employee.getNamePermission());
+		return new UserSS(user.getId(), user.getEmail(), user.getName(), user.getPassword(),
+				user.getNamePermission());
 	}
-
+	
 	public UsernamePasswordAuthenticationToken getAuthorization(String token) {
 		if (jwtUtil.isValid(token)) {
 			String username = jwtUtil.getUsername(token);

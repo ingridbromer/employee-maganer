@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.ssys.employeeMaganer.api.model.Employee;
 import br.com.ssys.employeeMaganer.api.model.dto.MessageDTO;
+import br.com.ssys.employeeMaganer.api.model.dto.ReportAgeDTO;
+import br.com.ssys.employeeMaganer.api.model.dto.ReportSalaryDTO;
 import br.com.ssys.employeeMaganer.api.service.EmployeeService;
 import br.com.ssys.employeeMaganer.api.utils.Constants;
 
@@ -28,32 +30,40 @@ public class EmployeeResource {
 	EmployeeService service;
 
 	
-	@GetMapping("/employee")
+	@GetMapping("/employees/")
 	public ResponseEntity<List<Employee>> findAll(){
 		return ResponseEntity.ok().body(service.findAll());
 	}
 	
-	@GetMapping("/employee/{id}")
-	public ResponseEntity<Employee> findOne(@PathVariable UUID id) {
-		return ResponseEntity.ok().body(service.findOne(id));
+	@GetMapping("/employees/{ID}")
+	public ResponseEntity<Employee> findOne(@PathVariable UUID ID) {
+		return ResponseEntity.ok().body(service.findOne(ID));
 	}
 
-	@PostMapping("/employee/register")
+	@PostMapping("/employees/")
 	public ResponseEntity<MessageDTO> registerEmployee(@RequestBody @Valid Employee employee) {
 		service.createEmployee(employee);
 		return ResponseEntity.ok().body(new MessageDTO(Constants.EMPLOYEE_CREATED));
 	}
 	
-	@PutMapping("/employee/{id}")
-	public ResponseEntity<MessageDTO> updateEmployee(@RequestBody @Valid Employee employee, @PathVariable UUID id) throws RelationNotFoundException{
-		service.updateEmployee(employee,id);
+	@PutMapping("/employees/{ID}")
+	public ResponseEntity<MessageDTO> updateEmployee(@RequestBody @Valid Employee employee, @PathVariable UUID ID) throws RelationNotFoundException{
+		service.updateEmployee(employee,ID);
 		return ResponseEntity.ok().body(new MessageDTO(Constants.EMPLOYEE_UPDATED));
 	}
 	
-	@DeleteMapping("/employee/{id}") 
-	public ResponseEntity<MessageDTO> deleteEmployee(@PathVariable UUID id) {
-		service.deleteEmployee(id);
+	@DeleteMapping("/employees/{ID}") 
+	public ResponseEntity<MessageDTO> deleteEmployee(@PathVariable UUID ID) {
+		service.deleteEmployee(ID);
 		return ResponseEntity.ok().body(new MessageDTO(Constants.EMPLOYEE_DEACTIVATED));
 	}
 	
+	@GetMapping("/reports/employees/age/")
+	public ResponseEntity<ReportAgeDTO> findByAge(){
+		return ResponseEntity.ok().body(service.findEmployeesByAge());
+	}
+	@GetMapping("/reports/employees/salary/")
+	public ResponseEntity<ReportSalaryDTO> findBySalary(){
+		return ResponseEntity.ok().body(service.findEmployeesBySalary());
+	}
 }
