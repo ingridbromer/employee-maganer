@@ -6,7 +6,7 @@ import java.util.UUID;
 import lombok.Data;
 
 @Data
-public class EmployeeDTO {
+public class UserDTO {
 
 	UUID id;
 	String email;

@@ -16,7 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
-import br.com.ssys.authentication.api.model.dto.EmployeeDTO;
+import br.com.ssys.authentication.api.model.dto.UserDTO;
 import br.com.ssys.authentication.api.model.dto.LoginRequestDTO;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
@@ -54,13 +54,13 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 			Authentication Auth) throws IOException {
 		UserSS users = (UserSS) Auth.getPrincipal();
 		String token = jwtUtil.generateToken(users.getEmail());
-		EmployeeDTO employee = new EmployeeDTO();
-		employee.setEmail(users.getEmail());
-		employee.setName(users.getName());
-		employee.setId(users.getId());
-		employee.setNamePermission(users.getPermissions());
-		employee.setToken(token);
-		String json = new Gson().toJson(employee);
+		UserDTO user = new UserDTO();
+		user.setEmail(users.getEmail());
+		user.setName(users.getName());
+		user.setId(users.getId());
+		user.setNamePermission(users.getPermissions());
+		user.setToken(token);
+		String json = new Gson().toJson(user);
 		res.setContentType("application/json");
 		res.setCharacterEncoding("UTF-8");
 		res.getWriter().write(json);

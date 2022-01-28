@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import br.com.ssys.employeeMaganer.api.exceptions.ResourceNotFoundException;
 import br.com.ssys.employeeMaganer.api.model.Employee;
+import br.com.ssys.employeeMaganer.api.model.dto.ReportAgeDTO;
+import br.com.ssys.employeeMaganer.api.model.dto.ReportSalaryDTO;
 import br.com.ssys.employeeMaganer.api.repository.EmployeeRepository;
 import br.com.ssys.employeeMaganer.api.utils.Constants;
 
@@ -63,4 +65,25 @@ public class EmployeeService {
 		repository.delete(employee);
 	}
 
+	public ReportAgeDTO findEmployeesByAge(){
+	ReportAgeDTO listEmployessByAge = new ReportAgeDTO();
+	List<Employee> listEmployees = repository.findAll();
+	for(Employee employee: listEmployees) {
+		listEmployessByAge.setYounger(listEmployees.get(0));
+		listEmployessByAge.setOlder(listEmployees.get(listEmployees.size() - 1));
+		listEmployessByAge.setAverage(listEmployees.get(0).getBirthDate().getTime() - listEmployees.get(listEmployees.size() - 1).getBirthDate().getTime());
+	} 
+	return listEmployessByAge;
+	}
+	
+	public ReportSalaryDTO findEmployeesBySalary(){
+	ReportSalaryDTO listEmployessBySalary = new ReportSalaryDTO();
+	List<Employee> listEmployees = repository.findAll();
+	for(Employee employee: listEmployees) {
+		listEmployessBySalary.setLowest(listEmployees.get(0));
+		listEmployessBySalary.setHighest(listEmployees.get(listEmployees.size() - 1));
+		listEmployessBySalary.setAverage(listEmployees.get(0).getSalary() - listEmployees.get(listEmployees.size() - 1).getSalary());
+	} 
+	return listEmployessBySalary;
+	}
 }
