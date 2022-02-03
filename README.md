@@ -1,4 +1,4 @@
-Documentação Swagger
+Documentações Swagger:
 
 registration-service
 http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config 
