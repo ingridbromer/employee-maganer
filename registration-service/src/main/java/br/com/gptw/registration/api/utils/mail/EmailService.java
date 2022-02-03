@@ -1,4 +1,4 @@
-package br.com.gptw.registration.api.config.mail;
+package br.com.gptw.registration.api.utils.mail;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;

@@ -26,8 +26,8 @@ import lombok.Setter;
 @EqualsAndHashCode
 @NoArgsConstructor
 //Table in DataBase
-@Entity
 //UserDetails is used for Security
+@Entity
 public class AppUser implements UserDetails {
 
 	//Id Sequence Generator
@@ -82,6 +82,7 @@ public class AppUser implements UserDetails {
     public String getLastName() {
         return lastName;
     }
+    
 
     @Override
     public boolean isAccountNonExpired() {
