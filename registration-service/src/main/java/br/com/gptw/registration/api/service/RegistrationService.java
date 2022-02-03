@@ -5,12 +5,12 @@ import java.time.LocalDateTime;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.gptw.registration.api.config.mail.EmailSender;
-import br.com.gptw.registration.api.config.mail.EmailValidator;
 import br.com.gptw.registration.api.model.AppUser;
 import br.com.gptw.registration.api.model.AppUserRole;
 import br.com.gptw.registration.api.model.ConfirmationToken;
 import br.com.gptw.registration.api.model.RegistrationRequest;
+import br.com.gptw.registration.api.utils.mail.EmailSender;
+import br.com.gptw.registration.api.utils.mail.EmailValidator;
 import lombok.AllArgsConstructor;
 
 @Service
@@ -21,6 +21,7 @@ public class RegistrationService {
 
 	private final EmailValidator emailValidator;
 	private final ConfirmationTokenService confirmationTokenService;
+
 	private final EmailSender emailSender;
 
 	public String register(RegistrationRequest request) {
@@ -29,7 +30,7 @@ public class RegistrationService {
 		if (!isValidEmail) {
 			throw new IllegalStateException("O e-mail não é válido!");
 		}
-
+		
 	     String token = appUserService.signUpUser(
 	                new AppUser(
 	                        request.getFirstName(),
@@ -47,8 +48,19 @@ public class RegistrationService {
 	        emailSender.send(
 	                request.getEmail(),
 	                buildEmail(request.getFirstName(), link));
-
+	        
+	        
+	       //URI myUri = new URI(token);
+	        
+	      //Send token via sms
+//	        SmsRequest smsRequest = new SmsRequest();
+//		     smsRequest.setPhoneNumber(request.getPhoneNumber());
+//		     smsRequest.setMessage("Confirme seu cadastro");
+//		     service.sendSms(smsRequest);
+//	        
 	        return token;
+	        
+	        
 	    }
 	
 	 @Transactional
@@ -59,7 +71,7 @@ public class RegistrationService {
 	                        new IllegalStateException("Token não encontrado no sistema!"));
 
 	        if (confirmationToken.getConfirmedAt() != null) {
-	            throw new IllegalStateException("O e-mail já foi confirmado no sistema!");
+	            throw new IllegalStateException("Usuário já foi confirmado no sistema!");
 	        }
 
 	        LocalDateTime expiredAt = confirmationToken.getExpiresAt();

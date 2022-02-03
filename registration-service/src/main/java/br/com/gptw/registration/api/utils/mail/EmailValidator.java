@@ -1,4 +1,4 @@
-package br.com.gptw.registration.api.config.mail;
+package br.com.gptw.registration.api.utils.mail;
 
 import org.springframework.stereotype.Service;
 
