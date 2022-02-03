@@ -6,8 +6,8 @@ http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-confi
 
 authentication-service
 http://localhost:8090/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/authorization-resource/getAuthorization
-employee-manager-service
 
+employee-manager-service
 http://localhost:8000/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/
 
 1.	Microsserviço registration – realiza o primeiro acesso do usuário ao serviço. Para isso, gera um token de acesso de 15 minutos, que deve ser confirmado via e-mail.
