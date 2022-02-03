@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.gptw.employeeMaganer.api</groupId>
-	<artifactId>employeeManager</artifactId>
+	<artifactId>employee-manager-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>employeeManager</name>
+	<name>employee-manager-service</name>
 	<description>GPTW Employee Manager SERVICE</description>
 	
 		<profiles>

@@ -9,11 +9,11 @@
 		<version>2.6.3</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>br.com.gptw.correspondenceHandling.api</groupId>
-	<artifactId>correspondenceHandling</artifactId>
+	<groupId>br.com.gptw.registration.api</groupId>
+	<artifactId>registration-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>correspondenceHandling</name>
-	<description>GPTW Correspondence Handling Service</description>
+	<name>cregistration-servic</name>
+	<description>GPTW Registration Service</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
