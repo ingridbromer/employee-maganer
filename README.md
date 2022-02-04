@@ -36,3 +36,7 @@ localhost:8090/login
 4.	Microsserviço correspondenceHandling - realiza o envio de SMS via plataforma Twilio. Para isso, devem ser gerados o accountSid, authToken e trialNumber diretamente na plataforma, e adicionados em application.properties:
 https://console.twilio.com/?frameUrl=%2Fconsole%3Fx-target-region%3Dus1
 Esse SMS pode conter um token, gerado na classe TwilioSmsService.
+
+Dentro da pasta service, encontram-se:
+1) SQL de criação das tabelas (banco de dados: employeesManager), SGBD PostgreSQL.
+2) Pasta employessManager_docker, com os arquivos 'docker-compose-des' e 'docker-compose-prd' (ambientes de desenvolvimento e produção), para a criação das imagens Docker. Orientações nos arquivos buildAllDsv.bat e buildAllPrd.bat, respectivamente.
