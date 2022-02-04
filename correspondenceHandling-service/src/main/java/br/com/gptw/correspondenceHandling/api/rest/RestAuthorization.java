@@ -1,4 +1,4 @@
-package br.com.gptw.correspondenceHandling.api.restAuthorization;
+package br.com.gptw.correspondenceHandling.api.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

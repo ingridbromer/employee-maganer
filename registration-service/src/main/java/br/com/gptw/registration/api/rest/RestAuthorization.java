@@ -1,4 +1,4 @@
-package br.com.gptw.registration.api.restAuthentication;
+package br.com.gptw.registration.api.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
