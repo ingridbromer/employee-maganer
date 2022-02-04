@@ -1,7 +1,7 @@
 Documentações Swagger:
 
 registration-service
-http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config 
+http://localhost:8070/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config 
 (após registro e confirmação do cadastro via token)
 
 authentication-service
@@ -11,8 +11,8 @@ employee-manager-service
 http://localhost:8000/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/
 
 1.	Microsserviço registration – realiza o primeiro acesso do usuário ao serviço. Para isso, gera um token de acesso de 15 minutos, que deve ser confirmado via e-mail.
-POST http://localhost:8080/api/v1/registration - Registra o usuário no Sistema, gerando um token
-GET http://localhost:8080/api/v1/registration/confirm?token=? – Confirmação de token via HTTP REQUEST
+POST http://localhost:8070/api/v1/registration - Registra o usuário no Sistema, gerando um token
+GET http://localhost:8070/api/v1/registration/confirm?token=? – Confirmação de token via HTTP REQUEST
 
 Para testar o envio de e-mail via MailDev:
 *Instalar e executar via cmd:
