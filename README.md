@@ -33,4 +33,5 @@ localhost:8090/login
 
 3.	Microsserviço employee-manager – realiza o cadastro; atualização; busca; listagem completa; listagem por diferença de idade (younger/older) e de salário(lowest/highest); e deleção, de funcionários. 
 
+Para gerar o authToken da plataforma Twilio, responsável pelo envio de SMS (deve ser adicionado em application-dev, twilio.authToken): 
 https://console.twilio.com/?frameUrl=%2Fconsole%3Fx-target-region%3Dus1
