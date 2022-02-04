@@ -33,6 +33,6 @@ localhost:8090/login
 
 3.	Microsserviço employee-manager – realiza o cadastro; atualização; busca; listagem completa; listagem por diferença de idade (younger/older) e de salário(lowest/highest); e deleção, de funcionários. 
 
-4.	Microsserviço correspondenceHandling - realiza o envio de SMS via plataforma Twilio. Para isso, deve ser gerado o authToken diretamente na plataforma, e deve ser adicionado em application-dev, twilio.authToken: 
+4.	Microsserviço correspondenceHandling - realiza o envio de SMS via plataforma Twilio. Para isso, devem ser gerados o accountSid, authToken e trialNumber diretamente na plataforma, e adicionados em application.properties:
 https://console.twilio.com/?frameUrl=%2Fconsole%3Fx-target-region%3Dus1
 Esse SMS pode conter um token, gerado na classe TwilioSmsService.
