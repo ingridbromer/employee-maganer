@@ -30,6 +30,7 @@ Dentro da pasta service, encontram-se:
 2) Pasta employessManager_docker, com os arquivos 'docker-compose-des' e 'docker-compose-prd' (ambientes de desenvolvimento e produção), para a criação das imagens Docker. Orientações nos arquivos buildAllDsv.bat e buildAllPrd.bat, respectivamente.
 
 Documentações Swagger:
+
 *registration-service
 http://localhost:8070/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config 
 (após registro e confirmação do cadastro via token)
