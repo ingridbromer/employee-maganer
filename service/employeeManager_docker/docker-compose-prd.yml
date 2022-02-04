@@ -1,0 +1,128 @@
+---
+version: '1'
+
+services:
+  postgresdb:
+    image: postgres
+    container_name: postgresdb
+    ports:
+      - '5431:5432'
+    restart: "no"
+    environment:
+      POSTGRES_DB: employeesManager
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ingrid
+    volumes:
+      - C:\DbPostegres:/var/lib/postgresql/data
+
+  registration:
+    build:
+      context: ../../registration-service
+      dockerfile: Dockerfile
+    depends_on:
+      -postgresdb
+    ports: 
+       - '8070:8070'
+    expose:
+      - 8070
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SERVER_ERROR_INCLUDE_MESSAGE: always
+      SERVER_ERROR_INCLUDE_BINDING_ERRORS: always
+      SPRING_DATASOURCE_URL: jdbc:postgresql://${POSTGRES_HOST}\:${POSTGRES_PORT}/${POSTGRES_DATABASE}
+      SPRING_JPA_DATABASE: POSTGRESQL
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: true
+      SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL: true 
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+      SPRING_MAIL_HOST: localhost 
+      SPRING_MAIL_PORT: 1025
+      SPRING_MAIL_USERNAME: ingrid
+      SPRING_MAIL_PASSWORD: ingrid
+      SPRING_MAIL_PROPERTIES_STMP_TRUST: "*"
+      SPRING_MAIL_PROPERTIES_STMP_AUTH: true
+      SPRING_MAIL_PROPERTIES_STMP_STARTTLS_ENABLE: true
+      SPRING_MAIL_PROPERTIES_STMP_CONNECTIONTIMEOUT: 5000
+      SPRING_MAIL_PROPERTIES_STMP_TIMEOUT: 3000
+      SPRING_MAIL_PROPERTIES_STMP_WEITETIMEOUT: 5000
+      POSTGRES_HOST: localhost
+      POSTGRES_PORT: 5432
+      POSTGRES_DATABASE: employeesManager
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ingrid
+  
+
+   
+  authentication:
+    build:
+      context: ../../authentication-service
+      dockerfile: Dockerfile
+    depends_on:
+      -postgresdb
+      -registration
+    ports: 
+       - '8090:8090'
+    expose:
+      - 8090
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      JWT_SECRET: rRtIFrzFIv5CXjwfpzk4bJIGhwuU6VjSuQvsbQOiZ6yItR8Suy
+      JWT_EXPIRATION: 8460000
+      
+
+  employee-manager:
+    build:
+      context: ../../authentication-service
+      dockerfile: Dockerfile
+    depends_on:
+      -postgresdb
+      -registration
+      -authentication
+    ports: 
+       - '8000:8000'
+    expose:
+      - 8000
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_JPA_DATABASE: POSTGRESQL
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+      SPRING_DATASOURCE_URL: jdbc:postgresql://${POSTGRES_HOST}\:${POSTGRES_PORT}/${POSTGRES_DATABASE}
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: ingrid
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JACKSON_DESERIALIZATION_FAIL_ON_UNKNOWN_PROPERTIES: true
+      SPRING_JACKSON_DATE_FORMAT: dd-MM-yyyy
+      SPRING_JACKSON_TIME_ZONE: Brazil/East
+      SPRING_JACKSON_LOCALE: pt-BR
+      POSTGRES_HOST: localhost
+      POSTGRES_PORT: 5432
+      POSTGRES_DATABASE: employeesManager
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ingrid
+    
+
+
+  #correspondenceHandling:
+    #build:
+      #context: ../../correspondenceHandling-service
+      #dockerfile: Dockerfile
+    #depends_on:
+      #-postgresdb
+      #-registration
+      #-authentication
+    #ports: 
+       #- '8080:8080'
+    #expose:
+      #- 8080
+    #environment:
+      #SPRING_PROFILES_ACTIVE: docker
+      #TWILIO_ACCOUNTSID:
+      #TWILIO_AUTHTOKEN:
+      #TWILIO_TRIALNUMBER:
+
+
+
+
+
+

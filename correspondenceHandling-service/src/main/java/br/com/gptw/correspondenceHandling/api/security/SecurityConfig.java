@@ -12,7 +12,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import br.com.gptw.correspondenceHandling.api.restAuthorization.RestAuthorization;
+import br.com.gptw.correspondenceHandling.api.rest.RestAuthorization;
 
 @Configuration
 @EnableWebSecurity

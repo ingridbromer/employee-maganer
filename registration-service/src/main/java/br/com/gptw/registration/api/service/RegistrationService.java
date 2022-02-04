@@ -2,6 +2,7 @@ package br.com.gptw.registration.api.service;
 
 import java.time.LocalDateTime;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -9,6 +10,8 @@ import br.com.gptw.registration.api.model.AppUser;
 import br.com.gptw.registration.api.model.AppUserRole;
 import br.com.gptw.registration.api.model.ConfirmationToken;
 import br.com.gptw.registration.api.model.RegistrationRequest;
+import br.com.gptw.registration.api.model.SmsRequest;
+import br.com.gptw.registration.api.rest.RestCorrespondenceHandling;
 import br.com.gptw.registration.api.utils.mail.EmailSender;
 import br.com.gptw.registration.api.utils.mail.EmailValidator;
 import lombok.AllArgsConstructor;
@@ -23,6 +26,9 @@ public class RegistrationService {
 	private final ConfirmationTokenService confirmationTokenService;
 
 	private final EmailSender emailSender;
+	
+	@Autowired
+	private RestCorrespondenceHandling restCorrespondenceHandling ;
 
 	public String register(RegistrationRequest request) {
 		boolean isValidEmail = emailValidator.test(request.getEmail());
@@ -37,6 +43,7 @@ public class RegistrationService {
 	                        request.getLastName(),
 	                        request.getEmail(),
 	                        request.getPassword(),
+	                        //request.getPhoneNumber(),
 	                        AppUserRole.USER
 
 	                )
@@ -52,13 +59,10 @@ public class RegistrationService {
 	        
 	       //URI myUri = new URI(token);
 	        
-	      //Send token via sms
-//	        SmsRequest smsRequest = new SmsRequest();
-//		     smsRequest.setPhoneNumber(request.getPhoneNumber());
-//		     smsRequest.setMessage("Confirme seu cadastro");
-//		     service.sendSms(smsRequest);
-//	        
-	        return token;
+	      //Send token via sms	        
+	      //SmsRequest sendSms = restCorrespondenceHandling.PostSms(request.getPhoneNumber(), token);
+	     
+	      return token;
 	        
 	        
 	    }

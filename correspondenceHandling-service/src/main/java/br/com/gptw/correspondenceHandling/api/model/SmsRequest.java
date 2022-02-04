@@ -9,7 +9,6 @@ public class SmsRequest {
     @NotBlank
     private final String phoneNumber; // destination
 
-    @NotBlank
     private final String message;
 
     public SmsRequest(@JsonProperty("phoneNumber") String phoneNumber,

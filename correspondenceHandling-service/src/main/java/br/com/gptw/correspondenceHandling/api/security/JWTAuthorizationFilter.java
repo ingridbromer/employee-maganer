@@ -11,7 +11,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-import br.com.gptw.correspondenceHandling.api.restAuthorization.RestAuthorization;
+import br.com.gptw.correspondenceHandling.api.rest.RestAuthorization;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 

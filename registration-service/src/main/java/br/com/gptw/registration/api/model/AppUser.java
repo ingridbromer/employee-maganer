@@ -40,6 +40,7 @@ public class AppUser implements UserDetails {
     private String lastName;
     private String email;
     private String password;
+    //private String phoneNumber;
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
     private Boolean locked = false;
@@ -50,11 +51,13 @@ public class AppUser implements UserDetails {
                    String lastName,
                    String email,
                    String password,
+                  // String phoneNumber,
                    AppUserRole appUserRole) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        //this.phoneNumber = phoneNumber;
         this.appUserRole = appUserRole;
     }
 
@@ -82,6 +85,10 @@ public class AppUser implements UserDetails {
     public String getLastName() {
         return lastName;
     }
+    
+    /*public String getPhoneNumber() {
+        return phoneNumber;
+    }*/
     
 
     @Override
