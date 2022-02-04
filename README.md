@@ -29,6 +29,8 @@ MailDev é uma maneira simples de testar os e-mails gerados pelo seu projeto dur
 
 2.  Microsserviço authentication – realiza a autenticação via Bearer Token de todos os demais microsserviços – tempo de expiração: 2,35h 
 Para isso, deve haver um usuário previamente cadastrado e autorizado no sistema (via registration-api).
-<host-name>/login
+localhost:8090/login
 
 3.	Microsserviço employee-manager – realiza o cadastro; atualização; busca; listagem completa; listagem por diferença de idade (younger/older) e de salário(lowest/highest); e deleção, de funcionários. 
+
+https://console.twilio.com/?frameUrl=%2Fconsole%3Fx-target-region%3Dus1
