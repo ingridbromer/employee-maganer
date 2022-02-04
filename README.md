@@ -35,3 +35,4 @@ localhost:8090/login
 
 4.	Microsserviço correspondenceHandling - realiza o envio de SMS via plataforma Twilio. Para isso, deve ser gerado o authToken diretamente na plataforma, e deve ser adicionado em application-dev, twilio.authToken: 
 https://console.twilio.com/?frameUrl=%2Fconsole%3Fx-target-region%3Dus1
+Esse SMS pode conter um token, gerado na classe TwilioSmsService.
