@@ -1,4 +1,4 @@
-package br.com.gptw.registration.api.utils.sms;
+package br.com.gptw.correspondenceHandling.api.model;
 
 import javax.validation.constraints.NotBlank;
 

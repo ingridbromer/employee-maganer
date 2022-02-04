@@ -1,10 +1,10 @@
-package br.com.gptw.registration.api.config;
+package br.com.gptw.correspondenceHandling.api.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-@ConfigurationProperties("twilio")
 @Configuration
+@ConfigurationProperties("twilio")
 public class TwilioConfig {
 	
 	private String accountSid;

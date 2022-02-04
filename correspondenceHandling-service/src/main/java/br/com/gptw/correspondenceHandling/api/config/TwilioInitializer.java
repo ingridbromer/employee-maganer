@@ -1,4 +1,4 @@
-package br.com.gptw.registration.api.config;
+package br.com.gptw.correspondenceHandling.api.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
